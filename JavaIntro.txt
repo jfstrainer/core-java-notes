@@ -1,0 +1,385 @@
+
+			Introduction to Java
+
+
+Java is a high level programming language developed by James Gosling & others in 1990's
+
+initially named as Oak & later renamed to Java
+
+officially released in May 1995
+
+Java is a programming language and a platform. 
+
+The Java language specification defines all the rules for writing programs in Java.
+
+The Java platform is the underlying system on which Java applications run.
+
+Java enables developers to build applications that run on many hardware and software platforms, without any  modifications
+
+
+Features of Java
+
+Simple
+Object Oriented
+Platform Independent
+Compiled & Interpreted
+Robust
+Secure
+Multithreaded
+Distributed
+Dynamic
+Auto Garbage collected
+
+
+Simple : most of the Java syntax is similar to C/C++
+
+Object Oriented programming : decomposing a task into several objects
+
+Simula (in 60's) 1st OOP language
+
+Smalltalk (in 70's) 100% pure OOP language
+
+C++ (in 80's) OOP Language
+
+Java (in 90's) pure OOP language
+
+
+Platform Independent
+
+Platform (Operating System & underlying Hardware)
+
+WORA (Write Once Run Anywhere)
+
+Compiled & Interpreted
+
+
+Robust :  	Strongly typed
+		Maintains fixed data type size across all the platforms
+		In-built exception handling mechanism
+
+Secure : 	Does not allow any unauthorised program or virus program to interact with our application
+
+Multi-threaded : Supports to develop an application which performs more than one task simultaneously
+
+
+Internet Programming Language : used to develop web based applications
+
+
+Distributed : supports to develop applications which run on different machines in network / internet
+
+
+Dynamic : loads necessary classes as needed at runtime
+
+
+Auto garbage collected : Java takes care of memory management implicitly
+
+
+Java has three main platforms
+
+(1) Java SE : Java Platform, Standard Edition
+
+	Provides an environment for applications to be developed on desktops and servers
+
+(2) Java EE : Java Platform, Enterprise Edition
+
+	for developing complex server side business applications that can run over networks and the Internet
+
+(3) Java ME : Java Platform, Micro Edition
+
+	for developing applications that run on mobile devices like cell phones
+
+
+Java Architecture
+
+Java Programming Language
+
+JDK : Java Development Kit
+
+	JRE + Tools (to compile, debug and execute the java programs)
+
+JRE : Java Runtime Environment
+
+	JVM + Utility classes
+
+JVM : Java Virtual Machine
+
+	Is part of the Java platform that ensures Java's platform independence
+
+	It converts byte code into native machine code
+
+
+Components of JVM
+
+(1) Class Loader : responsible for loading the .class files or byte code
+
+(2) Class file verifier : verifies the internal structure of the each and every class loaded
+	or
+      Byte code verifier
+
+(3) Execution Engine : converts the byte code into the actual machine code
+
+
+JIT : Just-In-Time Compiler
+
+	to improve the execution speed of a java program
+
+	compiles the code which is of repetative nature & interprets the other code
+
+
+Java does not support explicit pointers
+
+No explicit operator overloading
+
+No multiple inheritance on classes (supported through interfaces)
+
+No global variables & standalone functions (every thing must be part of the class, including main())
+
+No header files (supports packages)
+
+
+
+
+Compilation
+
+	javac  Hello.java
+
+Execution
+
+	java  Hello
+
+NOTE: Run the class in which main method is defined
+
+javac is not an internal or external command
+
+set path=c:\Program Files\java\jdk1.6.0\bin
+
+path : used to give the path of the java tools (javac, java etc)
+
+classpath : used to give information to the runtime environment about where our classes are residing
+
+if our .class files are located in d:\javademos then
+
+set classpath=%classpath%;d:\javademos
+
+
+
+Data Types
+
+1. Primitive Data Types	2. Non-primitive data types (String, Arrays)
+
+Primitive Data Types
+
+Data Type			Size		Default Value
+
+Integers
+byte			1 byte		0
+short			2 bytes		0
+int			4 bytes		0
+long			8 bytes		0L
+							
+Decimals
+float			4 bytes		0.0f
+double			8 bytes		0.0d (default)
+
+Characters
+char			2 bytes		'\u0000'	(0)
+		(16 bit Unicode char set)
+
+boolean			1 bit		false
+
+
+Syntax:
+
+declaration
+
+	datatype  variablename;
+
+	e.g: int x;
+
+declaration & initialization
+
+	datatype  variablename = value;
+
+	e.g: int x = 10;
+
+Type Casting : converting from one type to other
+
+(1) Primitive Type Casting : deals with primitive types
+
+(2) Reference Type Casting : deals with reference type i.e., class objects
+
+Primitive Type Casting
+
+Widening : smaller type to bigger type (implicitly)
+
+int x = 10;
+
+long a = x;
+
+Narrowing : bigger type to smaller type  (explicitly)
+
+long a = 75;
+
+int x = (int)a;
+	
+loss of data occurs
+
+
+	Primitive type	        	Wrapper Class	
+
+	byte		-	Byte
+	short		-	Short
+	int		-	Integer
+	long		-	Long
+	
+	float		-	Float
+	double		-	Double
+
+	char		-	Character
+
+	boolean		-	Boolean
+
+
+Wrapper classes provides various methods to convert objects to primitive type & vice versa
+
+
+
+
+Operators
+
+Arithmetic			+, -, *, /, %
+
+Relational			<, >, <=, >=, !=, ==
+
+Logical			&& (AND), || (OR), ! (NOT)
+
+Assignment		=
+
+Increment/Decrement		++, --
+
+Conditional		?:
+
+Bitwise			& (AND), | (OR), ~ (NOT) , ^ (Ex-OR), << (Left shift), >> (signed right shift), 				>>> (unsigned right shift)
+
+			>> (signed right shift) : works with both +ve & -ve values
+
+			>>> (unsigned right shift) : works with only +ve values
+
+Special			instanceof 
+			(checks if a given reference is an instance of a particular class or not)
+
+
+if(s instanceof  Student)
+   - -  -
+
+instanceof  operator returns true if the given reference is an instance of the specified class, otherwise it returns false
+
+
+
+
+Control Structures
+
+	Statements that are used to control the program flow
+
+Conditional Branching Statements
+
+	if & switch
+
+in C/C++
+	switch(int/char)
+
+in Java
+	switch(int/char/String)
+
+
+Conditional looping statements
+
+Loop : Process of executing a set of statements repeatedly until the condition remains true
+
+	while, do...while & for
+
+Java also supports enhanced for loop  or  for-each loop
+
+Syntax:
+
+for(datatype  variablename : arrayname) {
+- - -
+}
+
+Conditional jumping  Statements
+
+	break, continue & return
+
+break statement is used to terminate a block (switch block or a loop block)
+
+continue statement is used to skip the immediate statements i.e., skips current iteration & jumps to next iteration
+
+return statement returns the value/control to the caller
+
+
+int sum(int a, int b) {
+    return (a+b);
+}
+ 
+int c = sum(10, 20);
+print(c);
+
+
+boolean isEligibleToVote(int age) {
+           if(age > 18)
+                 return true;
+           else
+                 return false;
+}
+
+if(isEligibleToVote(21))
+    S.o.p("Yes, eligible to vote");
+else 
+    S.o.p("Not eligible to vote");
+
+
+
+Java also supports labelled break & continue statements
+
+
+outer: for(i = 1; i <= 5; i++) {
+	inner: for(j = 1; j <= i; j++) {
+		if(condition)
+		break outer;	// terminates both the loops
+	}
+	- - -
+}
+
+
+
+
+
+Arrays 
+
+	is a collection of multiple variables of single datatype referred by a common name
+
+Syntax:
+	datatype  [ ] arrayname  =  new  datatype[arraysize];
+
+e.g:
+	int  [ ]  a   =  new  int[5];     //  in C or C++ ,   datatype  arrayname[size] i.e., int  a[5];
+
+new operator will allocate the required memory at runtime
+
+Declaration & Initialization
+
+	int  [ ] a = { 10, 23, 45, 76, 85};
+
+	arrayname.length - will give size of the array
+e.g:
+	a.length - will give 5 i.e., size of the array
+
+Accessing array elements
+
+	arrayname[arrayindex];
+
+	a[0];
+
+
+
+

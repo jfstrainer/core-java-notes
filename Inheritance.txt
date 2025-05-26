@@ -1,0 +1,220 @@
+Inheritence 
+
+a class taking properties of another class
+
+extends keyword is used to inherit properties from one class to another class
+
+Syntax:
+	class  newclass  extends  existingclass {
+	- - -
+	}
+
+e.g:	
+	class B extends A {
+	   properties of A + own features of B
+	}
+
+A is super class & B is sub class
+
+Class which gives its properties to other classes is called base class/super class/parent class
+
+Class which takes properties from other classes is called derived class/sub class/child class
+
+Access Specifiers
+
+private members			: 	not inherited
+
+protected		 		: 	inherited
+
+public	 			: 	inherited
+
+default or friendly		 	: 	inherited
+
+		(in the absence of above mentioned access specifiers members become default or friendly)
+
+a member can access any other member of the same class irrespective of the access specifiers
+
+
+
+Constructors are not inherited
+
+How to initialize base class members?
+
+          In case of default or empty constructor the sub class constructor calls super class constructor automatically 
+
+order of calling
+
+	1. derived class constructor
+	2. base class constructor
+
+are executed according to the inheritence order, i.e., 
+
+execution order of the constructors
+
+	1. base class constructor
+	2. derived class constructor
+
+In case of parameterized or argument constructor, explicit call must be made & need to pass the required values to the base class constructor from the derived class constructor
+
+super : is a keyword which is used to refer to the base class members from the derived class
+
+can be used in 2 ways
+
+(1) to call the base class constructor from the derived class constructor & pass required no. of values to the base class constructor inorder to intialize the base class members
+
+Syntax:
+	super(parameters);
+Note:
+	super must be the first statement in the derived class constructor
+
+	the signature (no. of arguments,  type of arguments & sequence of arguments) must match with the base class constructor
+
+(2) to invoke the base class method from the derived class
+
+Syntax:
+	super.membername;
+
+
+Method Overriding
+
+	The process of defining a method in the sub class with same name, same signature & same return type as that of the method defined in super class.
+
+sub class method overrides the super class method
+
+
+
+
+
+final : is a keyword
+
+	can be used in 3 ways i.e., with a variable, method & class
+
+	(1) to define constants ( making variable final)
+	
+	e.g:
+		final  int  x  = 100;
+
+	value of that variable cannot be modified
+
+	(2) to define final methods 
+	e.g:
+		final void display( ) {
+		- - -
+		}
+
+	final methods cannot be overridden
+
+	(3) to define final class 
+
+	e.g:
+		final class  classname {
+		- - -
+		}
+
+	final class cannot be extended / inherited
+
+
+
+
+
+abstract keyword
+
+can be used in 2 ways i.e., to define abstract classes & abstract methods
+
+Abstract Class : a class which is qualified with abstract keyword is called an abstract class
+
+	a class which contains one or more abstract methods is called an abstract class
+
+Syntax:
+	abstract class classname {
+	        method declarations
+	        method definitions
+	}
+
+Abstract Method : a method qualified with abstract keyword or a method with no body is called an abstract method
+
+Syntax:
+	abstract returntype  methodname();
+
+
+abstract class Fruit {
+   abstract String taste();
+}
+
+class Mango  extends  Fruit {
+String taste( ) {
+    return  "Sweet";
+}
+}
+
+class Shape {
+    double calculateArea();
+}
+
+class Triangle extends Shape {
+
+    double calculateArea() {
+           return 0.5f * base * height;
+   }
+}
+
+class Account {
+     double calcInterest();
+}
+
+class SavingsAccount  extends  Account {
+  double calcInterest() {
+    - - -
+}
+}
+
+
+A class which contains one or more abstract methods is called an abstract class
+
+The methods for which definitions does not exists in the base class are made abstract methods
+
+Abstract class can contain both defined & abstract methods
+
+It cannot be instantiated i.e., objects cannot be created for such type of a class
+ 
+Only references can be created for such type of a class
+
+and the references can be made point to sub class objects which provides definitions to the abstract methods of the abstract class
+
+Fruit f = new Fruit();  // not allowed
+
+Fruit f;		// reference
+
+f = new Mango();	// making the reference point to sub-class object which defines taste() method
+
+f.taste();		// invoking the taste() method of Mango class using the reference of Fruit class
+
+
+Account ac = new SavingsAccount();
+ac.calcInterest();
+
+
+
+
+Shape s = new Shape();	// not allowed
+
+Shape s;			// reference, allowed
+
+References can be made point to sub class objects
+
+s = new Triangle();
+
+Additional methods which are defined in sub class cannot be accessed using reference of the base class
+
+i.e., if any additional methods are defined in Triangle or Rectangle, those methods cannot be accessed using reference of Shape i.e., s
+
+Abstract class can only be used as a base class i.e., to derive other classes
+
+A class which extends the abstract class must provide definitions for all the abstract methods of the base class otherwise that class also becomes an abstract class
+
+abstract class can extend other class, abstract class, implement an interface
+
+
+
+
+

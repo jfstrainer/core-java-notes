@@ -1,0 +1,389 @@
+
+
+
+		Object Oriented Programming System
+
+
+Splitting the task into several objects
+
+Features:
+
+Classes
+Objects
+Data Encapsulation
+Data Abstraction
+Inheritence
+Polymorphism
+
+
+Class : a class is a blue print / template
+
+          is a collection of multiple objects which share common behaviour
+
+           is a set of well defined properties
+
+           is a collection of variables (Data Fields) & functions (Methods) 
+
+           is a user defined data type
+
+Syntax:
+
+	class  classname {
+	       variable definitions
+	       method definitions
+	}
+
+Variables & methods defined inside the class are called members
+
+Class members are accessed using object of the class
+
+Object : is an instance of a class
+
+         is a runtime entity
+
+         used to access members of the class
+
+Syntax:
+
+	objectname.membername;
+
+
+Basic Characteristics of an object :
+
+(1) state		(2) behaviour		(3) identity
+
+state : variables defined inside the class represents state
+
+class Car {
+      String color;
+      float speed;
+      - - - 
+}
+
+class Person {
+    String name;
+    float age;
+}
+
+
+behaviour : methods defined inside the class represent behaviour
+
+start();
+accelerate( );
+break( );
+stop();
+
+methods are used to perform various operations on the variables (data)
+
+class Car {
+    private String color;
+    private float speed;
+
+    public void start( ) {
+          speed = 0;
+          starts the engine of the car
+    }
+    public void accelerate( ) {
+          speed++;
+    }
+    public void break( ) {
+         speed--;
+    }
+    public void stop( ) {
+         speed = 0;
+    }
+}
+
+
+identity : feature which makes an object unique among group of other objects
+
+	every object will have a unique identity
+
+	name of the object
+
+
+Creation of an Object
+
+Syntax:
+	classname   objectname  =  new  constructor();
+
+new : is used to allocate memory dynamically
+
+	Car  skoda = new  Car( );
+	skoda.start();
+	skoda.accelerate();
+
+constructor : is a special method with same name as classname which is used to initialize the class members
+
+in the absence of user defined constructor, a default constructor initializes the members with default values
+
+instantiation : process of creating an instance (object) for a class
+
+initialization : assigning values to the members first time
+
+Data Encapsulation : 
+
+Process of binding data & methods (which act upon the data) together into a single unit is called data encapsulation
+
+The single unit so formed is called an object
+
+	Object =  Data  +  Methods
+
+Data Abstraction : 
+
+Act of representing the essential features of an object without including the background details
+
+Inheritance : creating new classes from the existing classes
+
+	An object acquiring properties of another object
+
+	Code Reusability
+
+The class which gives its properties to other classes is Base class / Super class / Parent class
+
+The class which takes properties from other class is called Derived class / Sub class / Child class
+
+Types of Inheritance:
+
+Single
+Multi-level
+Multiple
+Heirarchical
+Hybrid
+
+
+
+
+Polymorphism : ability to take more than one form or existing in multiple forms
+
+Mobile
+Phone, 
+Radio, 
+Camera, 
+Browsing
+Calculator
+
+
+int a = 10, b = 25
+int c = a + b;
+
+results in arithmetic addition i.e., c = 35
+
+System.out.println(c);
+
+String s1 = "10", s2 = "25";
+System.out.println(s1 + s2)
+
+results in string concatenation i.e.,  1025
+
++ is existing in 2 forms here i.e., as arithmetic addition operator as well as string concatenation operator
+
+System.out.println(str1 + str2);
+
+println( ) : printing int value as well as string value
+
+
+Polymorphism is mainly classified into 2 types
+
+(1) Compile time polymorphism (or) Static Binding (or) Early binding	
+
+(2) Run time polymorphism (or) Dynamic Binding (or)  (or) Late binding
+
+
+
+
+Access Specifiers : which specify the accessibility of class members
+
+(1) Private	(2) Protected	(3) Public	(4) default or friendly
+
+private : accessible only within the class in which they are defined
+
+public : accessible inside the class and also outside the classs
+
+Note : A member can access any other member of the same class irrespective of the access specifier
+
+
+
+Types of variables in a class
+
+(1) instance variables
+(2) static or class variables
+(3) local variables
+
+class Demo {
+private int x, y;		// x & y are instance variables
+
+private static int z;		// z is a class variable or static variable
+
+public int sum(int a, int b) {	// a, b & c are local variables and sum is instance method
+       int c = a + b;
+       return c;
+}
+
+int prod(int a, int b) {			//prod  is instance method
+int c = a * b;
+return c;
+}
+
+public static void sayHello() {		// sayHello is the static method
+      -  -  -
+}
+- -  -
+}
+
+Instance Variable : variable which is assosiated with each and every instance (object) of a class 
+	              i.e., every object created for the class will have one copy of such variable
+
+	Associated with the object
+
+Static or Class variable : variable which is qualified with static keyword inside the class is called class variable, since it is assosiated with class not with the object
+
+       Only one copy of such variable is created for the entire class (global to the class)
+
+	Associated with the class
+
+Local variable : variable which is defined inside a method or a block
+
+	Scope : within the block (method) in which its defined	         
+
+Simililarly we can have instance methods & static methods
+
+Instance methods : which are associated with each & every instance (object) of the class
+
+Static methods : which are associated with the class itself, not with the object
+
+
+Constructor : is a special method with same name as the class name
+
+	     it is used to initialize the class members
+
+	     is called each time the class is instantiated i.e., while creating object for the class
+
+	     it cannot have return type, not even void (since internally it returns the instance of its own class)
+
+	     in absence of user defined constructor, compiler provides a constructor called default constructor
+
+	     default constructor initialises the class members with default values	
+
+	     a class can contian multiple constructors
+	     (supports to construct the object in multiple ways)
+
+Constructor Overloading  : defining more than one constructor in a class
+
+Student() { }
+Student(int rno, String name) { this.rno = rno; this.name = name; }
+Student(int rno) { this.rno = rno }
+Student(String name) { this.name = name; }
+
+Student s1 = new Student( );
+Student s2 = new Student("William");
+Student s3 = new Student(101);		
+Student s4 = new Student(111, "Smith");
+
+
+this : is a keyword, which is used to refer to the current object (object which invokes the method becomes current object for that method)
+
+
+Array of Objects
+
+classname  [] arrayname = new  classname[arraysize];
+
+Student  [ ]  s = new  Student[3];		// creates references only i.e., s[0], s[1] & s[2]
+
+s[0] = new  Student(101, "Smith");	// creates object
+s[1] = new  Student(102, "John");	// creates object
+s[2] = new  Student(103, "Mike");	// creates object
+
+static : is a keyword
+
+	can be used to define static variables, static methods, static blocks & static inner classes
+
+static variable
+
+Syntax:
+	static datatype variablename;
+e.g:
+	static int x;
+
+	only one copy of such variable is created for the entire class
+
+	common to all the instances created for the class
+
+	associated with the class, not with the object
+
+	also called as class variable
+
+	accessed directly using class name (classname.staticmember)
+
+e.g:	System.out
+
+
+
+
+static method
+
+	method qualified with static keyword
+Syntax:
+	static returntype methodname( ) { - - - }
+
+	can access only other static members
+
+	classname.methodname();
+
+e.g:	Integer.parseInt( )
+
+static block
+
+	is used to initialize the static variables
+
+	gets executed when the class is loaded i.e., before main method
+
+
+static int x;
+
+	static {
+	     x = 100;
+	}
+
+
+
+
+
+
+Method Overloading
+
+defining more than one method with same name but different signatures
+
+process of giving additional definitions to a method
+
+in order to overload a method
+
+method name must be same 
+and 
+either no. of arguments must be different 
+or 
+data types of the arguments must be different 
+or 
+sequence of arguments must be different
+
+int sum(int, int);
+int sum(int, int, int);
+double sum(double, double);
+double sum(int, double);
+double sum(double, int);
+
+
+int a = 15;
+float b = 2.75f;
+String s = "Hello";
+
+System.out.println(a);
+System.out.println(b);
+System.out.println(s);
+
+println( ) is overloaded to print different types of values
+
+
+
+
+
