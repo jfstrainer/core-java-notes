@@ -1,0 +1,236 @@
+
+			Exception Handling
+
+
+The mechanism of handling/responding to the various exceptions raised in a program
+
+Exception : is an abnormal event occured during program execution which disrupts normal flow of control
+
+Exception is an errornous situation in the program
+
+Errors are mainly classified into 3 types
+
+compile time errors : syntax errors
+runtime errors : exceptions
+logical errors
+
+
+Exceptions may cause due to various reasons
+
+due to invalid input by the end user
+
+due to physical resources
+
+
+Exceptions are mainly classified into 2 types
+
+(1) checked exceptions 	:  checked during compile time (checked by the compiler)
+
+(2) unchecked exceptions	:  not checked by the compiler
+
+
+
+Object is the super class of all the other classes in java
+
+Throwable is the super class of all the exception classes in java
+
+
+Keywords used in Exception Handling
+
+(1) try
+(2) throw
+(3) catch
+(4) throws
+(5) finally
+
+
+try : is used to enclose the statements that might cause an exception
+
+try {
+	statements that may cause an exception
+}
+
+throw : is used to raise an exception & transfers the control to the appropriate catch block
+
+throw AbcException;
+
+catch : is used to catch the exception raised & handle it
+
+catch(AbcException e) {
+        exception handler code
+}
+
+throws : is used to specify the type of exception or exceptions a method is going to throw
+
+void sayHello() throws AbcException, XyzException
+
+finally : is used to enclose the statements that must be executed always irrespective of exception raised or not
+           code to release resources (closing the file, closing database connection)
+           code to perform memory cleanup (making objects to point null)
+
+try {
+	fileopen(filename);
+
+	read();
+}
+	fileclose();
+
+
+
+
+
+
+
+
+
+
+every try block must have atleast one catch or finally block associated with it
+
+there must not be any other statements between try & catch blocks
+
+a single try block can have multiple catch blocks associated with it
+
+Note : Exception catch block must be the last catch block in the order
+
+Multiple exceptions can be caught in a single catch block
+
+catch(exception1 | exception2 | exception3 ex)
+
+a try can be nested inside another try block
+
+
+try {
+ - - -
+  	  try {
+		- - -
+	    }catch(XyzException e) {
+		- - -
+	    }
+}
+catch(AbcException e) {
+- - -
+}
+
+
+try {
+ - - -
+}
+catch(...) {
+  	  try {
+		- - -
+	    }catch(...) {
+		- - -
+	    }
+
+}
+
+finally {
+	try {
+		file.close();
+	}
+	catch(...) {
+	  - - -
+	}
+}
+
+
+
+
+Built-in Exceptions & User Defined Exceptions
+
+User Defined Exceptions
+
+Syntax: Checked Exception
+
+class classname extends Exception {
+   - - -
+}
+
+NOTE: Above syntax creates a checked exception, in order to create an unchecked exceptions extend RuntimeException class as shown below
+
+Syntax: Unchecked Exception
+
+class classname extends RuntimeException {
+- - -
+}
+
+
+MaxMarksException m = new MaxMarksException();
+
+throw m;
+
+throw new MaxMarksException();
+
+
+
+class Exception {
+
+private String message;
+
+public Exception(String message) {
+  this.message = message;
+}
+
+public String getMessage() {
+   return message;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NOTE :
+
+1. If a superclass does not declare an exception, then the subclass can only declare unchecked exception but not the checked exceptions
+
+2. If a superclass declares an exception, then the subclass can only declare the child exceptions of the exception declared by the superclass but not any other exception
+
+
+
+Shape s;
+
+s = new Triangle();
+s.area()
+
+s = new Rectangle();
+s.area()
+
+s = new Circle();
+s.area(2.4f)
+
+Exception e;
+
+e = new ArithmeticException();
+e.getMessage(); / by zero
+
+e = new ArrayIndexOutOfBoundsException();
+e.getMessage(); Index 1 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

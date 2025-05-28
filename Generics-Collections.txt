@@ -1,0 +1,204 @@
+
+
+			Generics & Collections
+
+
+Generic
+
+A class, or an interface or a method that works on a parameterized type is called Generic
+
+Generics helps to write algorithms independent of data types
+
+These algorithms can be applied to a variety of data types
+
+Allows to create type safe collections
+
+Type Safety
+
+Versions before Java 5.0 used the Object class to bring about similar effect of a Generic
+
+public void put(Object element, int position){
+	//Code goes here
+}
+
+public Object get(int position){
+	//Code goes here
+}
+
+put(new Integer(10), 0);  
+put(new Float(3.5f), 1); 
+put(new String("hello"), 2);
+
+Object obj = get(0);				// upcasting (sub-type to super-type)
+if(obj instanceof String) {
+         String str = (String)obj;		// downcasting (super-type to sub-type)
+         str.toUpperCase();
+}
+
+
+This approach is difficult and not type safe
+
+The object returned by the get method should be typecasted to the actual object before using it
+
+Any object, even incompatible type, can be passed to put method which can be detected only at run time
+
+put(new Integer(10), 0);  put(new Float(3.5f), 1); put(new String("Hi"), 2);
+
+Integer, Float, String
+
+Object o = get(1);
+if(o instanceof  Integer) {
+              Integer i = (Integer)o;			// downcasting i.e., supertype to subtype (explicit)
+	. . .
+}
+else if(o instanceof Float) {
+	Float f = (Float)o;
+	. . .
+}
+else if(o instanceof String) {
+	String str = (String)o;
+	. . .
+}
+
+
+
+Generic Class
+
+class Demo<T> {
+T x;
+}
+
+Demo d = new Demo();			// normal object creation
+
+Demo<String> s = new Demo<String>();		// instantiation of generic class
+
+Demo<Integer> i = new Demo<Integer>();
+
+Demo<Float> f = new Demo<Float>();
+
+Bounded parameters
+
+class Demo<T extends Number> {
+- - -
+}
+
+only Number or its subclasses can be used
+
+restricts the parameters to Integer, Float, Double etc
+
+Demo<Integer> i = new Demo<Integer>();
+Demo<Float> f = new Demo<Float>();
+Demo<Double> d = new Demo<Double>();
+
+
+
+
+
+				Collections
+
+Collection : A collection is an object that holds a group of other objects within it
+
+	  group of objects stored in the collection are called elements
+
+	  can grow to any size unlike arrays
+
+Limitations of an Array
+
+	Arrays are fixed in size i.e arrays do not grow while applications demand
+
+	Arrays can hold elements of single data type only
+
+	Inadequate support for inserting, deleting, sorting, and searching operations
+
+Collection Framework provides an architecture to store and manipulate the group of objects of same type or of different type
+
+Various classes & interfaces related to collection framework are available in java.util package
+
+It consists of interfaces, implementations (concreate classes) & algorithms (methods)
+
+Collection : is the base interface of all the collections in java
+
+Sub Interfaces
+
+Set, List
+
+Other Interfaces
+
+Enumeration : allows to traverse the collection i.e., accessing the elements one by one
+
+contains hasMoreElements( ) & nextElement( )
+
+hasMoreElements( ) : checks for the availability of the elements, returns a boolean value
+
+nextElement( ) : is used to access the next element, returns an object of Object class
+
+Iterator : allows to traverse the collection i.e., accessing the elements one by one
+
+contains hasNext( ), next( ) & remove( )
+
+hasNext( ) : checks for the availability of the element, returns a boolean value
+
+next( ) : is used to access the next element
+
+remove( ) : removes the last element returned
+
+ListIterator : allows to traverse in both (forward & backward) directions
+
+Enumeration & Iterator are uni-directional (first to last) whereas ListIterator is bi-directional
+
+forward direction : hasNext( ), next( )
+
+backward direction : hasPrevious( ), previous( )
+
+
+Utility Classes
+
+Collections  &   Arrays
+
+provides static methods like sort( ), binarySearch( ) etc
+
+Collections.sort(collectionobject);	// for collections
+
+Arrays.sort(arrayname); 		// for arrays
+
+
+
+LinkedList : addFirst(), addLast(), removeFirst(), removeLast()
+
+arrayList.add(0, "Hello");
+linkList.add(1, "World");
+
+linkList.removeList();
+
+
+
+
+Comparable & Comparator Interfaces 
+
+Used for sorting the data
+
+Comparable is a built-in interface from java.lang package
+
+contains compareTo() method to compare two objects & returns an int value
+
+Syntax:
+	object1.compareTo(object2);
+
+returns int value
+
+returns +ve value if object1 > object2
+returns -ve value if object1 < object2
+returns 0 value if object1 == object2
+
+Comparator is a built-in interface from java.util package
+
+contains compare() method to compare two objects & returns an int value
+
+Syntax:
+	compare(object1, object2);
+
+returns int value
+
+returns +ve value if object1 > object2
+returns -ve value if object1 < object2
+returns 0 value if object1 == object2
