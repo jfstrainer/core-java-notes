@@ -1,0 +1,572 @@
+﻿
+				Java 1.8 Features
+
+
+1. Default methods & static methods in the interface
+2. Functional Interfaces
+3. Lambda Expressions
+4. Method References
+5. Stream API
+6. Improved Date API
+
+
+1. Default methods & static methods in the interface
+
+     till Java 1.7, interfaces can contain only abstract methods
+
+     from Java 1.8 onwards an interface can contain defined methods i.e., default & static methods
+
+2. Functional Interfaces
+
+an interface which contains only one abstract method is called a functional interface
+
+The method declared in a functional interface is called as a functional method
+
+also called as Single Abstract Method interface (SAM interface)
+
+can add default and static methods to functional interface
+
+empty interfaces are called marker interfaces i.e., interfaces with zero abstract methods for e.g., Serializable interface
+
+ 
+@FunctionalInterface		// annotation is optional
+interface interfacename {
+      abstract method 
+}
+
+
+@FunctionalInterface
+interface AdditionOp {
+      int addNums(int a, int b);
+}
+
+		
+
+3. Lambda Expression
+
+A lambda expression is an anonymous block of code that encapsulates an expression or a block of statements and returns a result
+
+Lambda expression represents an instance of functional interface
+
+-> lambda operator
+
+Syntax:
+
+(parameters) -> expression;		// single line
+
+	OR
+
+(parameters) -> { statements }		// multiple lines
+
+	OR
+
+() -> expression;
+
+the arrow operator -> is used to seperate list of parameters and body of lambda expression
+
+
+can be applied in many different contexts, ranging from simple anonymous functions to sorting and filtering Collections etc
+
+
+Traditional approach
+
+// Interface
+
+@FunctionalInterface
+interface AdditionOp {
+      int addNums(int a, int b);
+}
+
+// Implementation class of the interface
+
+class AdditionImpl implements AddionOp {
+      @Override
+      public int addNums(int a, int b) {
+            return a+b;
+      }
+}
+
+// Main class
+
+class FnInDemo {
+     public static void main(String [] args) {
+	AdditionImpl a = new AdditionImpl();
+	System.out.println("Sum = "+a.addNums(10, 5));
+     }
+}
+
+Using Lambda expressions same thing can be written as
+
+@FunctionalInterface
+interface AdditionOp {
+      int addNums(int a, int b);
+}
+
+class LambdaExpsDemo {
+     public static void main(String [] args) {
+             AdditionOp ap = (x, y) -> x+y;
+           System.out.println("Sum = "+ap.addNums(10, 5));
+     }
+}
+
+Traditional approach
+
+@FunctionalInterface
+interface MathOperations {
+      int calculate(int a, int b);
+}
+
+class Addition implements MathOperations {
+      @Override
+      public int calculate(int a, int b) {
+            return a + b;
+      }
+}
+
+class Substraction implements MathOperations {
+      @Override
+      public int calculate(int a, int b) {
+            return a - b;
+      }
+}
+
+class Multiplication implements MathOperations {
+      @Override
+      public int calculate(int a, int b) {
+            return a * b;
+      }
+}
+
+class Division implements MathOperations {
+      @Override
+      public int calculate(int a, int b) {
+            return a / b;
+      }
+}
+
+class MathOpsDemo {
+     public static void main(String [] args) {
+
+        Addition a = new Addition();
+        Substraction s = new Substraction();
+        Multiplication m = new Multiplication();
+        Division d = new Division();
+
+        System.out.println("Sum = "+a.calculate(10, 5));
+        System.out.println("Diff = "+s.calculate(10, 5));
+        System.out.println("Prod = "+m.calculate(10, 5));
+        System.out.println("Div = "+d.calculate(10, 5));
+
+  }
+}
+
+
+Using Lambda expressions
+
+@FunctionInterface
+interface MathOperations {
+      int calculate(int a, int b);
+}
+
+class MathDemo {
+       public static void main(String [] args) {
+
+	MathOperations addition = (x, y) -> x + y;
+	MathOperations subn = (x, y) -> x - y;
+	MathOperations multiply = (x, y) -> x * y;
+	MathOperations divide = (x, y) -> x / y;
+
+	System.out.println(addition.calculate(10, 20));
+	System.out.println(subn.calculate(10, 2));
+	System.out.println(multiply.calculate(10, 6));
+	System.out.println(divide.calculate(10, 2));	
+       }
+}
+
+Multiple line expressions 
+
+Traditional approach
+
+@FunctionalInterface
+interface GreetUser {
+      String sayHello(String name);
+}
+
+class GreetUserImpl implements GreetUser {
+
+     public String sayHello(String username) {
+            String s1 = "Hello,  ";
+            String s2 = s1 + username;
+            return s2;
+     }
+
+}
+
+class GreetDemo {
+         public static void main(String [] args) {
+	GreetUserImpl g = new GreetUserImpl();
+	System.out.println(g.sayHello("Smith"));
+        }
+}
+
+Using Lambda expressions
+
+@FunctionalInterface
+interface GreetUser {
+      String sayHello(String name);
+}
+
+class GreetUserDemo {
+    public static void main(String [] args) {
+
+         GreetUser g = (username) -> {
+              String s1 = "Hello,  ";
+              String s2 = s1 + username;
+              return s2;
+         };
+         System.out.println(g.sayHello("Smith"));
+    }
+}
+
+
+4. Method References
+
+Java 8 allows to refer a method of a class using classname::methodName 
+
+Syntax :
+
+classname::methodname
+
+e.g:
+
+	String::toUpperCase	// String str = new String("hello");
+				// str.toUpperCase();
+
+	Employee::getSalary	// Employee emp = new Employee();
+				// emp.getSalary();
+
+	:: Method Reference operator
+
+
+5. Stream API
+
+allows to perform various operations on the data sets according to the requirement of the application
+
+filtering the data, transforming the data, sorting data etc
+
+
+Stream API
+
+forEach()
+
+The Stream.forEach() method works like for loop method. It iterates through each element and performs the specified operations.
+
+     List<Employee> empList = new ArrayList<>();
+     empList.add(new Employee("Peter", "Admin", 25000));
+     empList.add(new Employee("Zara", "Security", 7500));
+     empList.add(new Employee("Smith", "Accounts", 15000));
+     empList.add(new Employee("Mike", "Sales", 7500));
+
+// using enhanced for loop of Java 1.5
+
+        for(Employee emp : empList) {
+               System.out.println(emp);
+        }
+
+// using forEach loop of Java 1.8
+
+    empList.forEach(emp -> System.out.println(emp));
+
+    empList.stream().forEach(System.out::println);
+
+    vehicles.stream().forEach(System.out::println);
+
+
+filter()
+
+Stream.filter() method returns a stream consisting of the elements of this stream that match the given predicate.
+
+     empList.stream().filter(emp -> emp.getSalary() > 10000).forEach(System.out::println);
+
+map()
+
+is used to transform each element of the stream by applying a function to each element
+
+Stream.map() method returns a stream consisting of the results of applying the given function to the elements of this stream.
+
+car, bus, bike, auto
+
+vehicles.stream().map(String::toUpperCase).forEach(System.out::println);
+
+CAR, BUS, BIKE, AUTO
+
+peek()
+
+The Stream.peek() method is mainly used to support debugging, where you want to see the elements as they flow past a certain point in a pipeline.
+
+Stream.of("bus", "car", "auto", "flight", "train")
+                .filter(e -> e.length() > 3)
+                .peek(e -> System.out.println("Filtered value: " + e))	// auto	flight	train
+                .map(String::toUpperCase)
+                .peek(e -> System.out.println("Mapped value: " + e))	// AUTO	FLIGHT	TRAIN
+                .collect(Collectors.toList());
+
+distinct()
+
+The Stream.distinct() method returns a stream consisting of the distinct elements of this stream. It uses Object.equals() method.
+
+Stream.of("bus", "car", "bycycle", "bus", "car", "car", "bike")
+                .distinct()
+                .forEach(System.out::println);
+
+bus car bycycle bike
+
+limit() - limits to first N elements
+
+The Stream.limit() method returns a Stream with elements of the source stream, truncated to be no longer than the specified size
+
+Stream.of("bus", "car", "bicycle", "flight", "train").limit(3).forEach(System.out::println);
+
+limits to first 3 elements i.e., bus, car, bicycle
+
+skip()
+
+returns a stream after removing first N elements.
+
+
+sorted()
+
+The Stream.sorted() method returns a sorted Stream in the natural order by default. 
+
+Stream.of("bus", "car", "bicycle", "flight", "train")
+.sorted()
+.forEach(System.out::println);
+
+
+
+reduce()
+
+A reduction operation takes a sequence of input elements and combines them into a single summary result by repeated application of a combining operation. The Stream.reduce() method comes with three variations.
+
+Stream.of(10,20,22,12,14).reduce((x,y)->x+y).ifPresent(System.out::println);
+
+Integer arrSum = Stream.of(10,20,22,12,14).reduce(1000, Integer::sum);
+
+
+collect()
+
+Stream.collect() method used to receive elements from a stream and store them in a collection
+
+List<Employee> filteredList = empList.stream().filter(emp->emp.getSalary() > 10000)
+                                            .collect(Collectors.toList());
+
+concat()
+
+Stream.concat() method creates a lazily concatenated stream whose elements are all the elements of the first stream followed by all the elements of the second stream.
+
+Stream.concat(accEmpList.stream(), adminEmpList.stream()).forEach(System.out::println);
+    }
+}
+
+
+flatmap()
+
+The flatMap() operation has the effect of applying a one-to-many transformation to the elements of the stream, and then flattening the resulting elements into a new stream.
+
+map() vs flatmap()
+
+The function you pass to map() operation returns a single value. 
+
+The function you pass to flatMap() opeartion returns a Stream of values. 
+
+flatMap() is combination of map and flat operation
+
+
+List evens = Arrays.asList(2, 4, 6); 
+List odds = Arrays.asList(3, 5, 7);
+List primes = Arrays.asList(2, 3, 5, 7, 11);
+List numbers = Stream.of(evens, odds, primes).flatMap(list -> list.stream()).collect(Collectors.toList());
+
+System.out.println("flattend list: " + numbers);
+
+Output: flattend list: [2, 4, 6, 3, 5, 7, 2, 3, 5, 7, 11]
+
+
+     List<Employee> empList = new ArrayList<>();
+     empList.add(new Employee("Peter", "Admin", 25000));
+     empList.add(new Employee("Zara", "Admin", 7500));
+     empList.add(new Employee("Smith", "Admin", 15000));
+     empList.add(new Employee("Mike", "Admin", 7500));
+
+
+anyMatch(), allMatch() and noneMatch()
+
+boolean result = empList.stream().anyMatch(emp->emp.getAccount().matches("Admin"));
+        System.out.println(result);
+ 
+        result = empList.stream().allMatch(emp->emp.getAccount().matches("Admin"));
+        System.out.println(result);
+ 
+        result = empList.stream().noneMatch(emp->emp.getAccount().matches("User"));
+        System.out.println(result);
+    }
+
+
+
+findFirst(), findAny() 
+
+empList.stream().filter(emp->emp.getAccount().matches("Admin"))
+                        .findFirst()
+                        .ifPresent(System.out::println);
+ 
+        empList.stream().filter(emp->emp.getAccount().matches("Admin"))
+                        .findAny()
+                        .ifPresent(System.out::println);
+
+
+max(), min()
+
+Integer maxNumber = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
+                    .max(Comparator.comparing(Integer::valueOf))
+                    .get();
+ 
+Integer minNumber = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
+                    .min(Comparator.comparing(Integer::valueOf))
+                    .get();
+
+
+6. Improved Date API
+
+Java 8 introduced new APIs for Date and Time to address the shortcomings of the older java.util.Date and java.util.Calendar classes
+
+LocalDate, LocalTime, LocalDateTime, ZonedDateTime, Period etc
+
+
+of / parse methods
+
+LocalDate representing a specific day, month and year can be obtained using the “of” method or by using the “parse” method.
+
+below code snippets represents the LocalDate for 20 February 2015:
+
+LocalDate.of(2015, 02, 20);
+
+LocalDate.parse("2015-02-20");
+
+
+
+gets the current local date and adds one day:
+
+LocalDate tomorrow = LocalDate.now().plusDays(1);
+
+
+This example obtains the current date and subtracts one month. Note how it accepts an enum as the time unit:
+
+LocalDate previousMonthSameDay = LocalDate.now().minus(1, ChronoUnit.MONTHS);
+
+
+
+DayOfWeek sunday = LocalDate.parse("2016-06-12").getDayOfWeek();
+
+int twelve = LocalDate.parse("2016-06-12").getDayOfMonth();
+
+
+boolean leapYear = LocalDate.now().isLeapYear();
+
+
+
+
+
+LocalTime now = LocalTime.now();
+
+
+LocalTime representing 06:30 AM by parsing a string representation:
+
+LocalTime sixThirty = LocalTime.parse("06:30");
+
+
+LocalTime sixThirty = LocalTime.of(6, 30);
+
+
+LocalTime sevenThirty = LocalTime.parse("06:30").plus(1, ChronoUnit.HOURS);	// represents 7:30 AM
+
+
+int six = LocalTime.parse("06:30").getHour();
+
+
+check if a specific time is before or after another specific time. 
+
+
+boolean isbefore = LocalTime.parse("06:30").isBefore(LocalTime.parse("07:30"));
+
+
+
+LocalDateTime.of(2015, Month.FEBRUARY, 20, 06, 30);
+LocalDateTime.parse("2015-02-20T06:30:00");
+
+localDateTime.plusDays(1);
+localDateTime.minusHours(2);
+
+localDateTime.getMonth();
+
+
+ZonedDateTime when we need to deal with time zone specific date and time.
+
+The ZoneId is an identifier used to represent different zones. 
+
+There are about 40 different time zones and the ZoneId are used to represent them as follows.
+
+
+ZoneId zoneId = ZoneId.of("Europe/Paris");
+
+
+Set<String> allZoneIds = ZoneId.getAvailableZoneIds();
+
+
+LocalDateTime can be converted to a specific zone:
+
+ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, zoneId);
+
+
+
+ZonedDateTime.parse("2015-05-03T10:15:30+01:00[Europe/Paris]");
+
+
+
+LocalDateTime localDateTime = LocalDateTime.of(2015, Month.FEBRUARY, 20, 06, 30);
+
+
+Period and Duration
+
+The Period class represents a quantity of time in terms of years, months and days 
+
+The Duration class represents a quantity of time in terms of seconds and nano seconds.
+
+Working With Period
+
+Period class is widely used to modify values of given a date or to obtain the difference between two dates:
+
+LocalDate initialDate = LocalDate.parse("2007-05-10");
+
+LocalDate finalDate = initialDate.plus(Period.ofDays(5));
+
+int five = Period.between(initialDate, finalDate).getDays();
+
+long five = ChronoUnit.DAYS.between(initialDate, finalDate);
+
+
+
+LocalTime initialTime = LocalTime.of(6, 30, 0);
+
+LocalTime finalTime = initialTime.plus(Duration.ofSeconds(30));
+
+long thirty = Duration.between(initialTime, finalTime).getSeconds();
+
+long thirty = ChronoUnit.SECONDS.between(initialTime, finalTime);
+
+
+
+Date and Time Formatting
+
+
+localDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+
